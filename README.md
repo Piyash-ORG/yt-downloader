@@ -23,6 +23,7 @@
 1. Termux ইন্সটল করুন। 👉(https://f-droid.org/repo/com.termux_1022.apk)
 2. প্রয়োজনীয় প্যাকেজ ইন্সটল করুন:
 ```bash
+termux-setup-storage
 pkg update -y
 pkg upgrade -y
 pkg install git ffmpeg python -y
