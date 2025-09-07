@@ -38,16 +38,15 @@ esac
 
 echo -e "\n⬇️ Downloading playlist or video: $URL | Quality: $QUALITY"
 
-# Output template: শুধু title
+# Output template: just the title
 TEMPLATE="$OUTDIR/%(title)s.%(ext)s"
 
 if [ "$QUALITY" = "audio" ]; then
     yt-dlp -x --audio-format mp3 \
     -o "$TEMPLATE" "$URL"
 else
-    yt-dlp -f "$FORMAT" \
-    --merge-output-format mp4 \
-    -o "$TEMPLATE" "$URL"
+    # Use the best available single format (no merging)
+    yt-dlp -f "$FORMAT" -o "$TEMPLATE" "$URL"
 fi
 
 # Replace all "|" with "-" in filenames
