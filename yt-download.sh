@@ -3,7 +3,6 @@
 # GitHub-ready version
 
 OUTDIR="/sdcard/Movies"
-
 TELEGRAM="@mhd_piyash"
 
 if [ $# -lt 2 ]; then
@@ -39,13 +38,16 @@ esac
 
 echo -e "\n⬇️ Downloading playlist or video: $URL | Quality: $QUALITY"
 
+# Output template: শুধু title
+TEMPLATE="$OUTDIR/%(title)s.%(ext)s"
+
 if [ "$QUALITY" = "audio" ]; then
     yt-dlp -x --audio-format mp3 \
-    -o "$OUTDIR/%(playlist_index)s - %(title)s.%(ext)s" "$URL"
+    -o "$TEMPLATE" "$URL"
 else
     yt-dlp -f "$FORMAT" \
     --merge-output-format mp4 \
-    -o "$OUTDIR/%(playlist_index)s - %(title)s.%(ext)s" "$URL"
+    -o "$TEMPLATE" "$URL"
 fi
 
 # Replace all "|" with "-" in filenames
